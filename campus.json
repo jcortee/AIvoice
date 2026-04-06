@@ -1,0 +1,182 @@
+{
+    "njit": {
+	"name": "New Jersey Institute of Technology",
+        "info": "The main campus of the New Jersey Institute of Technology (NJIT) is located at University Heights, Newark, New Jersey 07102-1982.",
+	"location": "The address of N.J.I.T is three hunded twenty three Doctor Martin Luther King Junior Boulevard, Newark, NJ 07102.",
+        "keywords": ["campus","college","university","newark","new jersey"]
+    },
+
+    "parking": [
+	{
+          "name": "Summit Parking Deck",
+	  "info": "The primary lot for students, visitors, faculty, and staff with valid permits.",
+	  "location": "154 Summit Street",
+	  "amenities": ["public safety","police"],
+          "keywords": ["summit","park", "parking","deck","car", "student","faculty","staff"]
+        },
+        {
+          "name": "Science and Technology Parking Garage",
+          "info": "The S.T.P.G is a multi-level parking deck primarly used for students, faculty, and staff with valid permits.",
+	  "location": "42 Wilsey Street",
+	  "keywords": ["S.T.P.G","park","parking","parking lots","car","student","faculty","staff"]
+	},
+	{
+	  "name": "Lot 3 Student Mall Lot",
+	  "info": "Lot 3 Student Mall Lot is for faculty and staff only.",
+	  "location": "134 Summit Street, in front of the Student Mall.",
+	  "keywords": ["lot 3","student","mall", "lot","faculty","staff"]
+	},
+	{
+	  "name": "Lot 5 Warren Parking Lot",
+	  "info": "Lot 5 Warren Parking Lot is for faculty and staff only.",
+	  "location": "Warren Street, in front of Tiernan Hall and Faculty Memorial Hall (F.M.H)",
+	  "keywords": ["lot 5", "parking","lot","park","car"]
+	},
+	{
+	  "name": "Lot 7 Bleeker Parking Lot",
+	  "info": "Lot 7 Bleeker Parking Lot is for faculty and staff only.",
+	  "location": "170 Central Avenue, next to the Central Avenue Building.",
+	  "keywords": ["lot 7", "parking","lot","park","car"]
+	},
+	{
+	  "name": "NJIT West Parking Deck",
+	  "info": "The NJIT West Parking Deck is often used for student and visitor parking, but also for faculty and staff.",
+	  "location": "14-62 Sylvia Jackson Way, right next to Science and Technology Parking Garage.",
+	  "keywords": ["west parking deck","parking","deck","park","car"]
+	},
+	{
+	  "name": "Lot 16 New Street Parking",
+	  "info": "Lot 16 New Street Parking is used for faculty and staff only",
+	  "location": "269 New Street, by the Science and Technology Parking Garage. ",
+	  "keywords": ["lot 16","new street","parking","park","lot","car"]
+	},
+	{
+	  "name": "Fenster Parking Level 1",
+	  "info": "The Fenster Parking Level 1 is used for reserved faculty and staff.",
+	  "location": "144 New Street, next to Central King Building (C.K.B).",
+	  "keywords": ["fenster","parking", "level one","park","car"]
+	},
+	{
+	  "name": "Fenster Parking Level 2",
+	  "info": "The Fenster Parking Level 2 is used for faculty and staff only.",
+	  "location": "144 New Street, next to Central King Building (C.K.B).",
+	  "keywords": ["fenster","parking","level two","park","car"]
+	},
+	{
+	  "name": "Maple Hall Parking",
+	  "info": "The Maple Hall Parking consists of a 1 story parking garage (lower level). Available for students, faculty, and staff with valid NJIT hang tag.",
+	  "location": "200 Warren Street, within the NJIT Maple Hall residence building.",
+	  "keywords": ["maple","hall","parking","lower level","parking","park","car"]
+	},
+	{
+	  "name": "Essex County College Parking Deck",
+	  "info": "Essex County College Parking Deck has 100 parking spaces available to NJIT hang tag holders, Monday through Thursday between 7 AM and 10 PM. Park on the top level.",
+	  "location": "193 Academy Street.",
+	  "keywords": ["essex county", "parking", "deck","park","car"]
+	}
+    ],
+
+    "restrooms": {
+	"name": "restroom",
+	"info": "There are several restrooms in campus.",
+	"location": "The restrooms have been pinned. Check the map!",
+	"keywords": ["restroom", "restrooms","rest rooms","bathroom","bathrooms","bath rooms"]
+    },
+
+    "library": {
+        "name": "Van Houten Library",
+	"info": "The Van Houten Library is the primary quiet study spot, located near Central Avenue.",
+	"location": "Next to the Mechanical Engineering Building (MECH), across from the Campus Center (C.C)",
+	"amenities": ["reserve a room","study rooms","loaner laptops", "IT Desk","Desktop computers","printing","print","scanner","restroom","restrooms","bathrooms","bathroom"],
+        "keywords": ["library","bathroom","restroom","floor","study", "books", "quiet", "research","it desk","laptop","loan","borrow","computer","desktop","tech support","print","printing","scanner"]
+    },
+
+    "ecec": {
+	"name": "Helen and John C. Hartmann of Electrical and Computer Engineering Center",
+	"aliases": ["E.C.E", "E.C.E.C","ECE","ECEC"],
+	"info": "The Electrical and Computer Engineering Center, known as the E.C.E or E.C.E.C building, is the primary facility for the E.C.E Department.",
+	"location": "At the corner of Warren and Summer Street. Main entrance with glass doors facing Warren Street.",
+	"connection": "Connected to the Faculty Memorial Hall (F.M.H) via the second floor.",
+	"amenities": ["class","lecture","offices","office","research","department office","advising"],
+	"keywords": ["ece","e.c.e","ecec","e.c.e.c","e.c.e building","e.c.e.c building","engineering","computer","electrical","research","e.c.e department","department","advising","office","restroom","bathroom"]
+    },
+
+    "fmh": {
+	"name": "Faculty Memorial Hall",
+	"info": "The Faculty Memorial Hall, known as F.M.H, is a building for instructional classrooms and engineering labs. It is physically connected to the E.C.E.C building on the second floor. It also has the Microelectronics Center.",
+	"location": "Located between the E.C.E.C building and Kupfrian Hall. Next to Tiernan Hall.",
+	"amenities": ["classrooms", "labs", "i triple e", "rooms","microelectronics", "computung","high performance computing"],
+	"keywords": ["fmh","f.m.h","faculty memorial hall","class","classroom","lab","laboratory", "engineering lab", "microelectronics"]
+    },
+
+    "tiernan": {
+	"name": "Tiernan Hall",
+	"info": "Tiernan Hall is a building for science education, housing the departments of Chemistry and Physics. It is known for its large lecture halls, classrooms, and numerous research laboratories.",
+	"location": "Located at 161 Warren Street, next to the Faculty Memorial Hall (F.M.H) and the Wellness and Events Center (WEC).",
+	"amenities": ["lecture halls","chemistry labs", "physics labs","forsensic lab","department offices","restrooms"],
+	"keywords": ["tiernan","tiernan hall","chemistry","physics","science","lab","laboratory", "lecture","lecture hall","forensic"]
+    },
+
+    "wec": {
+	"name": "Joel and Diane Bloom Wellness and Events Center",
+	"info": "The Joel and Diane Bloom Wellness and Events Center, known as the WEC, is NJIT's premier athletic and recreational facility. It serves as a home for NJIT Highlander Athletics and is a major social hub for students.",
+	"location": "Located at 100 Lock Street, next to Tiernan Hall and adjacent to the athletic fields.",
+	"amenities": [
+		"basketball arena",
+		"fitness center",
+		"swimming pool",
+		"indoor track",
+		"turf room",
+		"study lounges",
+		"conference rooms"],
+	"keywords": [
+		"wec",
+		"wellness and events center",
+		"gym",
+		"jim",
+		"gem",
+		"workout",
+		"exercise",
+		"fitness",
+		"rec",
+		"recreation",
+		"wellness",
+		"pool",
+		"swimming",
+		"basketball",
+		"volleyball",
+		"arena",
+		"track",
+		"turf",
+		"study"]
+    },
+
+    "campus_center": {
+	"name": "Campus Center",
+	"aliases": ["cc", "c.c"],
+	"info": "The Campus Center is the main student hub at NJIT, offering dining, lounges, meeting spaces, recreation, and student services.",
+	"location": "150 Bleeker Street, next to Kupfrian Hall and adjacent to the Green.",
+	"amenities": [
+		"dining",
+		"lounges",
+		"study areas",
+		"student services",
+		"convenience store",
+		"recreation",
+		"game room",
+		"bowling",
+		"coffee"
+	],
+	"keywords": [
+		"campus center",
+		"cc",
+		"student center",
+		"student services",
+		"center",
+		"dining hall",
+		"food",
+		"lounge",
+		"recreation"
+	]
+    }
+}

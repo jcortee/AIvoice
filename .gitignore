@@ -1,0 +1,5 @@
+wakeword-env/
+*.onnx
+*.wav
+__pycache__/
+*.pyc
