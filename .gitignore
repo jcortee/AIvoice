@@ -3,3 +3,4 @@ wakeword-env/
 *.wav
 __pycache__/
 *.pyc
+aivoice/voice_whisper.py
