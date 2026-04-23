@@ -214,11 +214,22 @@
 	"name": "Weston Hall",
 	"aliases": ["WEST"],
 	"info": "Weston Hall is the primary hub for the Hillier College of Architecture and Design (HCAD).",
-	"location": "Along Martin Luther King Junior Boulevard at corner of Warren Street.",
+	"location": "Located at 340 Martin Luther King Junior Boulevard. It features two distinct entrances: the main entrance accessed via a long elevated walkway ramp displaying the architecture name sign, and a secondary street-level door along MLK Junior Boulevard slightly past the corner of Warren Street.",
 	"connection": "Physically interconnected with Colton Hall and Campbell Hall. Accessible from campus via an elevated walkway ramp.",
-	"amenities": ["class","lecture"],
-	"keywords": ["weston","westin","western","weston hall","west","hcad","coad","architecture","design","lecture"]
+	"amenities": ["class","lecture","offices","office","design studios","architecture library","gallery","atrium"],
+	"keywords": ["weston","westin","western","weston hall","west","hcad","coad","architecture","design","lecture","littman library","library","atrium","gallery","studio","lecture"]
+    },
+
+    "campbell": {
+	"name": "Campbell Hall",
+	"aliases": ["CAMP"],
+	"info": "Campbell Hall is a historic red brick building that primarily acts as a hub for student services. It houses the Educational Opportunity Program (EOP) (3rd floor), which provides academic support and counseling for underserved students, the Center for Counseling & Psychological Services (C-CAPS) (Room 205), and the Center for Pre-College Programs.",
+	"location": "Located at 110 Summit Street in between CKB and Colton Hall.",
+	"connection": "Physically interconnected with Colton Hall and Weston Hall.",
+	"amenities": ["Educational Opportunity Program","EOP","Center for Counseling and Psychological Services","C-CAP","Center for Pre-College Programs","offices","office"],
+	"keywords": ["campbell","campbell hall","camp","eop","educational opportunity program","c-caps","counseling","pre-college","student services","red brick","office"]
     }
+
 }
 
 
