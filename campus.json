@@ -178,5 +178,29 @@
 		"lounge",
 		"recreation"
 	]
+    },
+
+    "bookstore": {
+	"name": "NJIT Bookstore",
+	"info": "The NJIT Bookstore is the official campus source for textbooks, apparel, and supplies.",
+	"location": "Located in Specht Building at 120 Summit Street (corner of Warren St.)",
+	"contact": {
+	    "phone": "973-596-3200",
+	    "email": "njit@bkstr.com",
+	    "website": "https://bkstr.com/njitstore/home"
+	},
+	"hours": {
+	    "monday": "9:00 AM - 5:00PM",
+	    "tuesday": "9:00 AM - 5:00 PM",
+	    "wednesday": "9:00 AM - 5:00 PM",
+    	    "thursday": "9:00 AM - 5:00 PM",
+	    "friday": "Closed",
+    	    "saturday": "Closed",
+	    "sunday": "Closed",
+	    "note": "Hours may vary during holidays and university breaks."
+	}
     }
+
 }
+
+
