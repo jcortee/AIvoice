@@ -199,8 +199,26 @@
 	    "sunday": "Closed",
 	    "note": "Hours may vary during holidays and university breaks."
 	}
-    }
+    },
 
+    "colton": {
+	"name": "Colton Hall",
+	"aliases": ["COLT"],
+	"info": "Colton Hall is a historic campus building housing classrooms, offices, and research labs for Civil and Environmental Engineering and Architecture studios.",
+	"location": "Along Summit Street, situated between Campbell Hall and Weston Hall.",
+	"amenities": ["class","lecture","offices","office","research labs","design studios"],
+	"keywords": ["colton","colt","colton hall","civil engineering","environmental engineering","architecture","studio","studios","labs","lab","offices"]
+    },
+
+    "weston": {
+	"name": "Weston Hall",
+	"aliases": ["WEST"],
+	"info": "Weston Hall is the primary hub for the Hillier College of Architecture and Design (HCAD).",
+	"location": "Along Martin Luther King Junior Boulevard at corner of Warren Street.",
+	"connection": "Physically interconnected with Colton Hall and Campbell Hall. Accessible from campus via an elevated walkway ramp.",
+	"amenities": ["class","lecture"],
+	"keywords": ["weston","westin","western","weston hall","west","hcad","coad","architecture","design","lecture"]
+    }
 }
 
 
