@@ -2,7 +2,7 @@
     "njit": {
 	"name": "New Jersey Institute of Technology",
         "info": "The main campus of the New Jersey Institute of Technology (NJIT) is located at University Heights, Newark, New Jersey 07102-1982.",
-	"location": "The address of N.J.I.T is three hunded twenty three Doctor Martin Luther King Junior Boulevard, Newark, NJ 07102.",
+	"location": "The address of N.J.I.T is 323 Doctor Martin Luther King Junior Boulevard, Newark, NJ 07102.",
         "keywords": ["campus","college","university","newark","new jersey"]
     },
 
@@ -11,69 +11,131 @@
           "name": "Summit Parking Deck",
 	  "info": "The primary lot for students, visitors, faculty, and staff with valid permits.",
 	  "location": "154 Summit Street",
-	  "amenities": ["public safety","police"],
-          "keywords": ["summit","park", "parking","deck","car", "student","faculty","staff"]
+	  "keywords": ["summit","park", "parking","deck","car", "students","student","visitors","visitor","faculty","staff","public safety","police"]
         },
         {
           "name": "Science and Technology Parking Garage",
           "info": "The S.T.P.G is a multi-level parking deck primarly used for students, faculty, and staff with valid permits.",
-	  "location": "42 Wilsey Street",
-	  "keywords": ["S.T.P.G","park","parking","parking lots","car","student","faculty","staff"]
+	  "location": "Located at 42 Sylvia Jackson Wy.",
+	  "keywords": ["S.T.P.G","science and technology","park","parking","deck","parking lots","car","students","student","faculty","staff"]
 	},
 	{
 	  "name": "Lot 3 Student Mall Lot",
 	  "info": "Lot 3 Student Mall Lot is for faculty and staff only.",
-	  "location": "134 Summit Street, in front of the Student Mall.",
-	  "keywords": ["lot 3","student","mall", "lot","faculty","staff"]
+	  "location": "Located at 134 Summit Street, in front of the Student Mall.",
+	  "keywords": ["lot 3","mall","lot","faculty","staff","faculty and staff only"]
 	},
 	{
 	  "name": "Lot 5 Warren Parking Lot",
 	  "info": "Lot 5 Warren Parking Lot is for faculty and staff only.",
-	  "location": "Warren Street, in front of Tiernan Hall and Faculty Memorial Hall (F.M.H)",
-	  "keywords": ["lot 5", "parking","lot","park","car"]
+	  "location": "Located at 159 Warren Street, in front of Tiernan Hall and Faculty Memorial Hall (F.M.H)",
+	  "keywords": ["lot 5", "parking","warren parking","lot","park","car","faculty","staff"]
 	},
 	{
 	  "name": "Lot 7 Bleeker Parking Lot",
 	  "info": "Lot 7 Bleeker Parking Lot is for faculty and staff only.",
 	  "location": "170 Central Avenue, next to the Central Avenue Building.",
-	  "keywords": ["lot 7", "parking","lot","park","car"]
+	  "keywords": ["lot 7", "parking","bleeker parking","lot","park","car","faculty","staff"]
 	},
 	{
 	  "name": "NJIT West Parking Deck",
 	  "info": "The NJIT West Parking Deck is often used for student and visitor parking, but also for faculty and staff.",
 	  "location": "14-62 Sylvia Jackson Way, right next to Science and Technology Parking Garage.",
-	  "keywords": ["west parking deck","parking","deck","park","car"]
+	  "keywords": ["west parking deck","parking","deck","park","car","student","students","visitor","visitors","faculty","staff"]
 	},
 	{
 	  "name": "Lot 16 New Street Parking",
 	  "info": "Lot 16 New Street Parking is used for faculty and staff only",
 	  "location": "269 New Street, by the Science and Technology Parking Garage. ",
-	  "keywords": ["lot 16","new street","parking","park","lot","car"]
+	  "keywords": ["lot 16","new street","parking","park","lot","car","faculty","staff"]
 	},
 	{
 	  "name": "Fenster Parking Level 1",
 	  "info": "The Fenster Parking Level 1 is used for reserved faculty and staff.",
 	  "location": "144 New Street, next to Central King Building (C.K.B).",
-	  "keywords": ["fenster","parking", "level one","park","car"]
+	  "keywords": ["fenster","parking", "fenster parking","level 1","faculty","staff","level one","park","car"]
 	},
 	{
 	  "name": "Fenster Parking Level 2",
 	  "info": "The Fenster Parking Level 2 is used for faculty and staff only.",
 	  "location": "144 New Street, next to Central King Building (C.K.B).",
-	  "keywords": ["fenster","parking","level two","park","car"]
+	  "keywords": ["fenster","parking","level two","park","car", "faculty","staff","faculty parking"]
 	},
 	{
 	  "name": "Maple Hall Parking",
 	  "info": "The Maple Hall Parking consists of a 1 story parking garage (lower level). Available for students, faculty, and staff with valid NJIT hang tag.",
 	  "location": "200 Warren Street, within the NJIT Maple Hall residence building.",
-	  "keywords": ["maple","hall","parking","lower level","parking","park","car"]
+	  "keywords": ["maple","hall","parking","lower level","parking","park","car","students","student","faculty","staff","permit","hang tag"]
 	},
 	{
 	  "name": "Essex County College Parking Deck",
 	  "info": "Essex County College Parking Deck has 100 parking spaces available to NJIT hang tag holders, Monday through Thursday between 7 AM and 10 PM. Park on the top level.",
 	  "location": "193 Academy Street.",
-	  "keywords": ["essex county", "parking", "deck","park","car"]
+	  "keywords": ["essex county", "parking", "deck","park","car","hang tag","x's","student","students"]
 	}
+    ],
+
+    "dorms": [
+    {
+        "name": "Cypress Residence Hall",
+        "info": "A suite-style residence hall typically for upperclassmen.",
+        "location": "180 Bleeker Street, located across the Campus Center and next to the Athletic Field.",
+        "amenities": ["laundry","residence","dorm"],
+        "keywords": ["cypress", "dorm", "housing", "residence hall", "suite", "upperclassmen"]
+    },
+    {
+        "name": "Redwood Hall",
+        "info": "The traditional freshman residence hall, known for its community-focused layout and proximity to the main quad.",
+        "location": "186 Bleeker Street, situated right next to Cypress Hall.",
+        "amenities": ["laundry", "community kitchen", "study lounges", "vending machines"],
+        "keywords": ["redwood", "dorm", "housing", "residence hall", "freshman", "first year"]
+    },
+    {
+        "name": "Oak Hall",
+        "info": "An apartment-style residence hall primarily for upperclassmen and graduate students, featuring full kitchens in each unit.",
+        "location": "155 Summit Street, located directly across from the Summit Street Parking Deck.",
+        "amenities": ["kitchen", "laundry", "study lounges", "vending machines", "restroom"],
+        "keywords": ["oak", "dorm", "housing", "residence hall", "apartment", "upperclassmen", "graduate", "summit"]
+    },
+    {
+        "name": "Laurel Hall",
+        "info": "A suite-style hall for both freshmen and upperclassmen, featuring a popular ground-floor convenience store and large lounge.",
+        "location": "141 Summit Street, across from the E.C.E.C building.",
+        "amenities": ["C-store", "convenience store", "laundry", "study lounges", "vending machines", "restroom"],
+        "keywords": ["laurel", "dorm", "housing", "residence hall", "suite", "c-store", "convenience store", "summit"]
+    },
+    {
+        "name": "Maple Hall",
+        "info": "The newest apartment-style residence hall on campus, featuring modern finishes, a private courtyard, and ground-floor retail.",
+        "location": "200 Warren Street, at the corner of Warren Street and Wickliffe Street.",
+        "amenities": ["private kitchen", "courtyard", "retail", "laundry", "fitness center", "study rooms", "restroom"],
+        "keywords": ["maple", "dorm", "housing", "residence hall", "apartment", "new dorm", "warren", "wickliffe"]
+    },
+    {
+        "name": "Honors Residence Hall",
+        "info": "The primary residence for Albert Dorman Honors College students, featuring integrated study spaces and proximity to academic buildings.",
+        "location": "156 Warren Street, adjacent to the E.C.E.C and Greek Way.",
+        "amenities": ["laundry", "study lounges", "computer lab", "vending machines", "restroom"],
+        "keywords": ["honors", "dorm", "housing", "residence hall", "albert dorman", "honors college", "warren"]
+    },
+    {
+        "name": "Greek Way",
+        "info": "A row of townhouses specifically designated for NJIT's fraternities and sororities.",
+        "location": "Located along the pedestrian walkway parallel to Warren Street, behind the Honors Hall.",
+        "amenities": ["chapter rooms", "kitchens", "laundry", "restroom"],
+        "keywords": ["greek way", "greek life", "fraternity", "sorority", "frat", "housing", "townhouse"]
+    }
+    ],
+
+    "affiliated_housing": [
+    {
+      "name": "University Centre",
+      "aliases": ["UC", "The UC", "University Center", "Found Study"],
+      "info": "University Centre (UC) is a privately managed student apartment complex. It serves NJIT, Rutgers, and ECC students with individual per-bed leases.",
+      "location": "250 Central Avenue, at the corner of Central Ave and Lock Street.",
+      "amenities": ["fitness center", "theater room", "game room", "study lounges", "printing", "full kitchens", "laundry", "garage parking", "24-hour security", "restroom"],
+      "keywords": ["uc", "university centre", "university center", "found study", "250 central", "apartments", "housing", "gym", "theater", "lock street", "central ave"]
+    }
     ],
 
     "restrooms": {
@@ -87,8 +149,8 @@
         "name": "Van Houten Library",
 	"info": "The Van Houten Library is the primary quiet study spot, located near Central Avenue.",
 	"location": "Next to the Mechanical Engineering Building (MECH), across from the Campus Center (C.C)",
-	"amenities": ["reserve a room","study rooms","loaner laptops", "IT Desk","Desktop computers","printing","print","scanner","restroom","restrooms","bathrooms","bathroom"],
-        "keywords": ["library","bathroom","restroom","floor","study", "books", "quiet", "research","it desk","laptop","loan","borrow","computer","desktop","tech support","print","printing","scanner"]
+	"amenities": ["reserve a room","study rooms","loaner laptops", "IT Desk","Desktop computers","printing","print","scanner"],
+        "keywords": ["library","study", "books", "quiet", "research","it desk","laptop","loan","borrow","computer","desktop","tech support","print","printing","scanner"]
     },
 
     "ecec": {
@@ -98,7 +160,7 @@
 	"location": "At the corner of Warren and Summer Street. Main entrance with glass doors facing Warren Street.",
 	"connection": "Connected to the Faculty Memorial Hall (F.M.H) via the second floor.",
 	"amenities": ["class","lecture","offices","office","research","department office","advising"],
-	"keywords": ["ece","e.c.e","ecec","e.c.e.c","e.c.e building","e.c.e.c building","engineering","computer","electrical","research","e.c.e department","department","advising","office","restroom","bathroom"]
+	"keywords": ["ece","e.c.e","ecec","e.c.e.c","e.c.e building","e.c.e.c building","engineering","computer","electrical","research","e.c.e department","department","advising","office"]
     },
 
     "fmh": {
@@ -121,34 +183,8 @@
 	"name": "Joel and Diane Bloom Wellness and Events Center",
 	"info": "The Joel and Diane Bloom Wellness and Events Center, known as the WEC, is NJIT's premier athletic and recreational facility. It serves as a home for NJIT Highlander Athletics and is a major social hub for students.",
 	"location": "Located at 100 Lock Street, next to Tiernan Hall and adjacent to the athletic fields.",
-	"amenities": [
-		"basketball arena",
-		"fitness center",
-		"swimming pool",
-		"indoor track",
-		"turf room",
-		"study lounges",
-		"conference rooms"],
-	"keywords": [
-		"wec",
-		"wellness and events center",
-		"gym",
-		"jim",
-		"gem",
-		"workout",
-		"exercise",
-		"fitness",
-		"rec",
-		"recreation",
-		"wellness",
-		"pool",
-		"swimming",
-		"basketball",
-		"volleyball",
-		"arena",
-		"track",
-		"turf",
-		"study"]
+	"amenities": ["basketball arena","fitness center","swimming pool","indoor track","turf room","study lounges","conference rooms"],
+	"keywords": ["wec","wellness and events center","gym","jim","gem","workout","exercise","fitness","rec","recreation","wellness","pool","swimming","basketball","volleyball","arena","track","turf","study"]
     },
 
     "campus_center": {
@@ -156,28 +192,8 @@
 	"aliases": ["cc", "c.c"],
 	"info": "The Campus Center is the main student hub at NJIT, offering dining, lounges, meeting spaces, recreation, and student services.",
 	"location": "150 Bleeker Street, next to Kupfrian Hall and adjacent to the Green.",
-	"amenities": [
-		"dining",
-		"lounges",
-		"study areas",
-		"student services",
-		"convenience store",
-		"recreation",
-		"game room",
-		"bowling",
-		"coffee"
-	],
-	"keywords": [
-		"campus center",
-		"cc",
-		"student center",
-		"student services",
-		"center",
-		"dining hall",
-		"food",
-		"lounge",
-		"recreation"
-	]
+	"amenities": ["dining","lounges","study areas","student services","convenience store","recreation","game room","bowling","coffee"],
+	"keywords": ["campus center","cc","student center","student services","center","dining hall","food","lounge","recreation"]
     },
 
     "bookstore": {
@@ -228,7 +244,172 @@
 	"connection": "Physically interconnected with Colton Hall and Weston Hall.",
 	"amenities": ["Educational Opportunity Program","EOP","Center for Counseling and Psychological Services","C-CAP","Center for Pre-College Programs","offices","office"],
 	"keywords": ["campbell","campbell hall","camp","eop","educational opportunity program","c-caps","counseling","pre-college","student services","red brick","office"]
+    },
+
+    "ckb": {
+	"name": "Central King Building",
+	"aliases": ["CKB"],
+	"info": "Central King Building is a STEM hub for biology and engineering research, modern classrooms, and student support services. It includes the Department of Biological Sciences, the Norma J. Clayton 81 Learning Center (tutoring), a math emporium, collaborative study spaces, and various research laboratories.",
+	"location": "Located at 100 Summit Street. It is adjacent to Fenster Hall and behind Kupfrian Hall.",
+	"amenities": ["classrooms","class","study rooms","biology labs","Agile Strategu Lab","The Learning Center","TLC","math emporium","auditorium","writing center","study spaces","lounges","math tutoring","physics tutoring","chemistry tutoring"],
+	"keywords": ["ckb","central king","central king building","stem hub","agile strategy lab","tlc","the learning center","writing center","study spot","biology","math tutoring","physics tutoring","chemistry tutoring"]
+    },
+
+    "kupf": {
+	"name": "Kupfrian Hall",
+	"aliases": ["KUPF"],
+	"info": "The Kupfrian Hall is a hybrid building featuring heavily used general classrooms, the Jim Wise Theatre, and the Office of Accessibility Resources and Services (OARS).",
+	"location": "Located prominently along the main campus green, right next to the Campus Center.",
+	"amenities": ["classrooms","class","lecture","Jim Wise Theatre","theater","OARS","Office of Accessibility Resources and Services"],
+	"keywords": ["kupfrian","kupf","kupfrian hall","jim wise","theatre","theater","oars","accessibility"]
+    },
+
+    "fenster": {
+	"name": "Fenster Hall",
+	"aliases": ["FENS"],
+	"info": "Fenster Hall is a modern academic and administrative building characterized by its striking architecture. It serves as a backdrop to Eberhardt Hall and shares a famously scenic overhead skybridge.",
+	"location": "hm",
+	"amenities": ["admissions","career development services","administrative offices","skybridge"],
+	"keywords": ["fenster","fenster hall","fens","admissions","skybridge","bridge"]
+    },
+
+    "student_mall": {
+	"name": "Student Mall",
+	"info": "The Student Mall is the main hub for essential administrative student services. It also contains the PC Mall, which holds computer labs.",
+	"location": "Located on the lower ground level of the Summit Street Parking Deck and adjacent to Lot 3 Student Mall Lot.",
+	"connection": "Directly integrated into the basement structure of the Summit Parking Deck.",
+	"amenities": ["financial aid","bursar","registrar","pc mall","computer labs","printing"],
+	"keywords": ["student mall","pc mall","parking deck","lower level","basement","financial aid","bursar","registrar","paying","loans","computers"]
+    },
+
+    "lsec": {
+	"name": "Life Sciences and Engineering Center",
+	"aliases": ["LSEC"],
+	"info": "The Life Sciences and Engineering Center (LSEC) is a state-of-the-art research facility filled with wet and dry laboratories. It is focused on multidisciplinary collaboration in clinical healthcare and technology.",
+	"location": "Located at 134 Summit Street on the south side of campus, positioned right next to the Summit Street Parking Deck and the Student Mall.",
+	"connection": "Physically connected to the adjoining Otto H. York Center for Environmental Engineering and Science.",
+	"amenities": ["wet labs","dry labs","research laboratories","two-story atrium","offices","office","BioSMART Center","mass spectrometry lab"],
+	"keywords": ["lsec","life sciences","life sciences and engineering center","york","otto york","labs","lab","research","atrium","summit street","parking deck"]
+    },
+
+    "york": {
+	"name": "Otto H. York Center for Environmental Engineering and Science",
+	"aliases": ["YCEES"],
+	"info": "The Otto H. York Center (YCEES) at NJIT serves as a base for core laboratory facilities and interdisciplinary research. It was the first building in the nation specifically constructed for cooperative public and private research in hazardous waste management.",
+	"location": "hm",
+	"connection": "Physically connected at each level to the adjoining Life Sciences and Engineering Center (LSEC).",
+    	"amenities": ["core laboratory facilities","material characterization","chemical analysis","environmental measurements","bio-imaging","labs","research","offices","office"],
+    	"keywords": ["york","york center","otto york","ycees","lsec","life sciences","research","labs","lab","hazardous waste","nanotechnology","microfluidics","summit street","parking deck"]
+    },
+
+    "cullimore": {
+	"name": "Cullimore Hall",
+	"aliases": ["CULM"],
+	"info": "Cullimore Hall is a 7-floor academic building housing general classrooms, administrative offices for multiple departments, and a recently renovated, tech-forward lecture hall.",
+	"location": "Located centrally on campus at 70 Summit Street, right behind the Campus Center and directly adjacent to Fenster Hall.",
+	"amenities": ["classrooms","lecture halls","Lecture Hall 1","collaboration spaces","math department","humanities department","history department"],
+	"keywords": ["cullimore","cullimore hall","culm","70 summit","math department","mathematics","humanities","history","lecture hall 1","theater seating","collaboration space"]
+    },
+
+    "eberhardt": {
+	"name": "Eberhardt Hall",
+	"aliases": ["EBER"],
+	"info": "Eberhardt Hall is the oldest and most iconic building on campus. It is a preserved historic castle-like landmark that now serves as the NJIT Alumni Center and administrative headquarters.",
+	"location": "It sits prominently at the corner of MLK Junior Boulevard and Bleeker Street, directly in behind Fenster Hall.",
+	"amenities": ["Alumni Center","dining area","event spaces","board room","administrative offices"],
+	"keywords": ["eberhardt","eberhardt hall","eber","alumni center","castle"]
+    },
+
+    "central_avenue_building": {
+    	"name": "Central Avenue Building",
+    	"aliases": ["CAB"],
+    	"info": "The Central Avenue Building (CAB) is a 4-story academic hub that houses the Robert W. Van Houten Library and the Martin Tuchman School of Management.",
+    	"location": "Located at 184-198 Central Avenue, positioned directly across the street from the Campus Center and near the mechanical engineering building.",
+    	"amenities": ["Van Houten Library","Information Commons","computer labs","Martin Tuchman School of Management","School of Management","Ray Cassetta Financial Analysis Lab","Bloomberg terminals","study spaces"],
+    	"keywords": ["central avenue building","cab","van houten","library","mtsm","martin tuchman","management","business","bloomberg","financial lab","information commons","study","books"]
+    },
+
+    "mech": {
+    	"name": "Mechanical Engineering Building",
+    	"aliases": ["ME", "MEC"],
+    	"info": "The Mechanical Engineering Building (MEC) serves as the primary base for the Department of Mechanical and Industrial Engineering, featuring active fabrication labs and instructional classrooms.",
+    	"location": "Located at 186 Bleecker Street, positioned adjacent to the Van Houten Library (Central Avenue Building).",
+    	"amenities": ["classrooms","lecture halls","fabrication labs","rapid prototyping","computer labs","machine shop","offices","office"],
+    	"keywords": ["mech","me","mec","mechanical engineering","industrial engineering","mie","fabrication","prototype","machine shop","lecture"]
+    },
+
+    "makerspace": {
+    	"name": "NJIT Makerspace",
+    	"aliases": ["Maker", "Makerspace"],
+    	"info": "The NJIT Makerspace is a massive 25,000-square-foot rapid prototyping and collaboration facility. It is filled with top-tier machinery where students can bring their engineering, architecture, and design projects to life.",
+    	"location": "Located at 186 Bleecker Street",
+    	"connection": "Directly integrated into the GITC building structure, with its own glass-fronted facade facing out toward the campus walking paths.",
+    	"amenities": ["3D printing","laser cutting","CNC machining","woodshop","metal shop","welding","electronics lab","soldering","PCB creation","metrology","design software"],
+    	"keywords": ["makerspace","maker","gitc","3d printing","laser cutters","woodshop","metal shop","prototyping","machining","welding","fabrication","innovation"]
+    },
+
+    "gitc": {
+    	"name": "Guttenberg Information Technologies Center",
+    	"aliases": ["GITC"],
+    	"info": "The Guttenberg Information Technologies Center (GITC) is an academic and research facility. It serves as the main hub for the Ying Wu College of Computing, data science, and contains the massive Makerspace facility on its lower levels.",
+    	"location": "Located at 186 Bleeker Street next to the Makerspace.",
+    	"amenities": ["lecture halls","classrooms","computer labs","Ying Wu College of Computing","data science department","Makerspace","vending machines"],
+    	"keywords": ["gitc","guttenberg","information technologies center","makerspace","ying wu","computing","computer science","data science","ywcc"]
+    },
+
+    "naimoli_center": {
+    	"name": "Naimoli Family Athletic and Recreational Facility",
+    	"aliases": ["Naimoli", "Naimoli Tennis Center"],
+    	"info": "The Naimoli Family Athletic and Recreational Facility is a massive 25,000-square-foot indoor arena. It serves as the primary home for the NJIT men's and women's tennis teams, while also hosting general student intramural programs and recreational sports.",
+    	"location": "Located along Lock Street, situated toward the edge of campus near the Wellness and Events Center (WEC).",
+    	"amenities": ["tennis courts","indoor courts","intramural sports","recreation","borrow racquets","PlaySight technology","restroom","restrooms","bathrooms","bathroom"],
+    	"keywords": ["naimoli","naimoli center","tennis center","tennis courts","tennis","lock street","recreation","intramurals","racquets","balls","indoor","court 1","court 2","restroom","bathroom"]
+    },
+
+    "the_park": {
+    	"name": "The Green at University Park",
+    	"aliases": ["The Park", "The Green", "GAUP"],
+    	"info": "The Green at University Park is a dedicated open landscaped plaza on campus. It serves as a vibrant green space for students to relax, study outside, and socialize.",
+    	"location": "Located in the northeast portion of the campus area, situated within the University Heights neighborhood footprint.",
+    	"amenities": ["seating area","benches","open grass","walking paths"],
+    	"keywords": ["the park","the green","gaup","green at university park","outdoor","grass","benches","relax","study outside","university heights"]
+    },
+
+    "field": {
+    	"name": "Lubetkin Field at Mal Simon Stadium",
+    	"aliases": ["Field", "Lubetkin Field", "Soccer Field"],
+    	"info": "Lubetkin Field at Mal Simon Stadium is an outdoor multipurpose facility. It functions as the home field for NJIT soccer and lacrosse, as well as a central space for campus intramurals and student recreation.",
+    	"location": "Located at 100 Lock Street, positioned immediately adjacent to the Joel & Diane Bloom Wellness and Events Center (WEC).",
+    	"connection": "Directly connected to the WEC structure, which houses its press box and production rooms.",
+    	"amenities": ["soccer field","lacrosse field","intramural sports","bleacher seating","press box","FieldTurf"],
+    	"keywords": ["field","lubetkin field","mal simon","soccer","lacrosse","lock street","stadium","turf","intramurals","wec","bleachers"]
+    },
+
+    "microelectronics": {
+    	"name": "Microelectronics Center",
+    	"aliases": ["MIC", "Microelectronics Building"],
+    	"info": "The Microelectronics Center serves as a premier research hub featuring high-level cleanrooms for nanofabrication. It is home to the Microfabrication Innovation Center (MIC), where students and researchers develop bio-sensors, microfluidics, and smart devices.",
+    	"location": "Located at 111 Summit Street, situated on FMH.",
+    	"connection": "Connected to FMH.",
+    	"amenities": ["ISO 6 Cleanroom","ISO 7 Cleanroom","photolithography","laser writing","E-beam material deposition","wet etching","metrology measurement","characterization facilities"],
+    	"keywords": ["microelectronics","mic","microfabrication","microelectronics center","nanofabrication","cleanroom","iso 6","iso 7","nanotech","mems","research","labs","lab"]
+    },
+
+    "police": {
+	"name": "NJIT Police Department",
+	"aliases": ["police","public safety","department of public safety","njit pd","security"],
+	"info": "The NJIT Police Department provides police protection 24 hours a day, seven days a week.", 
+	"location": "Located at 154 Summit Street on the first level of the Summit Parking Deck.",
+	"amenities": ["27/7 patrol","safety escorts","lost and found","emergency","emergencies","911","police"],
+	"contact": {
+	    "emergency": "Dial 9-1-1, say Location NJIT",
+	    "report_crime": "973-596-3111",
+	    "general_information": "973-596-3120",
+	    "non_emergency": "973-596-8177"
+	},
+	"keywords": ["police","safety","security","emergency","cop","pd","911","help","danger","escort","patrol","lost and found"]
     }
+
 
 }
 
