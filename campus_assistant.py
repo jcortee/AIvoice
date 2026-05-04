@@ -24,6 +24,9 @@ WAKE_IGNORE_TIME = 4  # seconds after triggering
 SILENCE_THRESHOLD = 500
 SILENCE_SECONDS = 1.2
 
+prev_score = 0
+LOCKOUT = 1.5  # seconds
+
 # File paths
 PIPER_MODEL = "/home/jcorte/aivoice/en_US-hfc_female-medium.onnx"
 PIPER_EXE = "/home/jcorte/aivoice/wakeword-env/bin/piper"
@@ -106,31 +109,71 @@ exiting = False
 # =========================================================================
 
 def load_campus_data():
-    """Load and flatten campus building data."""
+    """Load and flatten campus building data with rich fields for the LLM."""
     try:
-        with open(CAMPUS_JSON, 'r') as f:
+        with open(CAMPUS_JSON, "r") as f:
             data = json.load(f)
+        print("[CAMPUS] Loaded campus.json", flush=True)
     except Exception as e:
-        print(f"[ERROR] Failed to load campus data: {e}")
+        print(f"[ERROR] Failed to load campus data: {e}", flush=True)
         return []
 
     flat_buildings = []
+
+    def make_building_obj(item, fallback_key):
+        name = item.get("name", fallback_key)
+        info = item.get("info", "")
+        location = item.get("location", "")
+
+        aliases = item.get("aliases", []) or []
+        amenities = item.get("amenities", []) or []
+        keywords = item.get("keywords", []) or []
+        contact = item.get("contact", {}) or {}
+        hours = item.get("hours", {}) or {}
+
+        # Build a rich text blob the LLM can reason over
+        parts = [
+            f"Name: {name}",
+            f"Info: {info}",
+            f"Location: {location}",
+        ]
+
+        if aliases:
+            parts.append("Aliases: " + ", ".join(aliases))
+        if amenities:
+            parts.append("Amenities: " + ", ".join(amenities))
+        if keywords:
+            parts.append("Keywords: " + ", ".join(keywords))
+        if contact:
+            contact_lines = [f"{k}: {v}" for k, v in contact.items()]
+            parts.append("Contact: " + " | ".join(contact_lines))
+        if hours:
+            hours_lines = [f"{day}: {hrs}" for day, hrs in hours.items()]
+            parts.append("Hours: " + " | ".join(hours_lines))
+
+        full_text = "\n".join(parts)
+
+        return {
+            "name": name,
+            "info": info,
+            "location": location,
+            "aliases": aliases,
+            "amenities": amenities,
+            "keywords": keywords,
+            "contact": contact,
+            "hours": hours,
+            "full_text": full_text,
+        }
+
     for key, entry in data.items():
         if isinstance(entry, list):
             for item in entry:
-                flat_buildings.append({
-                    "name": item.get("name", key),
-                    "info": item.get("info", ""),
-                    "location": item.get("location", "")
-                })
+                flat_buildings.append(make_building_obj(item, key))
         else:
-            flat_buildings.append({
-                "name": entry.get("name", key),
-                "info": entry.get("info", ""),
-                "location": entry.get("location", "")
-            })
-    
+            flat_buildings.append(make_building_obj(entry, key))
+
     return flat_buildings
+
 
 # =========================================================================
 # HELPER: Set State (like BotGUI.set_state)
@@ -162,10 +205,14 @@ def get_campus_answer(user_text):
     
     # Build building list text
     buildings_text = "\n".join(
-        f"• {b['name']}: {b['info']} (Location: {b['location']})"
+        f"• {b['name']}: {b['info']} " 
+        f"(Location: {b['location']}) "
+        f"(Contact: {', '.join(f'{k}: {v}' for k, v in b['contact'].items()) if b['contact'] else 'None'})"
+        f"(Hours: {', '.join(f'{day}: {hrs}' for day, hrs in b['hours'].items()) if b['hours'] else 'None'})"
         for b in campus_data
     )
     
+
     # Construct prompt (like SYSTEM_PROMPT + context)
     prompt = f"""{SYSTEM_PROMPT}
 
@@ -219,7 +266,19 @@ def speak(text):
         "NJIT": "N.J.I.T",
         "ECEC": "E.C.E.C",
         "ECE": "E.C.E",
-        "CKB": "C.K.B"
+        "CKB": "C.K.B",
+        "WEC": "W.E.C",
+        "HCAD": "H.C.A.D",
+        "GITC": "G.I.T.C",
+        "LSEC": "L.S.E.C",
+        "YCEES": "Y.C.E.E.S",
+        "OARS": "O.A.R.S",
+        "MTSM": "M.T.S.M",
+        "EOP": "E.O.P",
+        "TLC": "T.L.C",
+        "PC": "P.C",
+        "FMH": "F.M.H",
+        "CAB": "C.A.B",
     }
     
     cleaned = text
@@ -384,7 +443,8 @@ def calibrate_noise_floor():
 
 def main_loop():
     """Main event loop: listen → record → transcribe → respond → speak."""
-    global last_trigger_time, exiting
+    global last_trigger_time, exiting, prev_score
+
     
     set_state(AssistantState.IDLE, "Ready")
     print("\n[SYSTEM] Campus Assistant Ready. Say 'Hey Kiosk'...\n", flush=True)
@@ -403,44 +463,30 @@ def main_loop():
             
             for wakeword, score in prediction.items():
                 
-                # Ignore during cooldown
-                if current_time - last_trigger_time < WAKE_IGNORE_TIME:
-                    continue
-                
                 # Sliding window detection (like detect_wake_word_or_ptt)
-                score_window.append(score)
-                
-                if sum(s > WAKE_THRESHOLD for s in score_window) >= REQUIRED_IN_WINDOW:
-                    print(f"\n[WAKE] {wakeword} detected ({score:.2f})", flush=True)
-                    last_trigger_time = current_time
-                    score_window.clear()
-                    
-                    # Record audio
-                    audio_file = record_command(dynamic_threshold)
-                    
-                    if not audio_file:
+                # HARD LOCKOUT
+                if current_time - last_trigger_time >= LOCKOUT:
+
+                    # RISING EDGE DETECTION
+                    if prev_score < WAKE_THRESHOLD and score >= WAKE_THRESHOLD:
+                        print(f"\n[WAKE] {wakeword} detected ({score:.2f})", flush=True)
+                        last_trigger_time = current_time
+
+                        # Record audio
+                        audio_file = record_command(dynamic_threshold)
+
+                        if audio_file:
+                            user_text = transcribe_audio(audio_file)
+                            if user_text:
+                                print(f"[USER] {user_text}", flush=True)
+                                answer = get_campus_answer(user_text)
+                                speak(answer)
+
                         set_state(AssistantState.IDLE, "Ready")
-                        continue
-                    
-                    # Transcribe
-                    user_text = transcribe_audio(audio_file)
-                    
-                    if not user_text:
-                        set_state(AssistantState.IDLE, "Heard nothing.")
-                        continue
-                    
-                    print(f"[USER] {user_text}", flush=True)
-                    
-                    # Get answer
-                    answer = get_campus_answer(user_text)
-                    
-                    # Speak answer
-                    speak(answer)
-                    
-                    # Return to idle
-                    set_state(AssistantState.IDLE, "Ready")
-                    print("\n[SYSTEM] Waiting for next command...\n", flush=True)
-                    time.sleep(0.5)
+                        print("\n[SYSTEM] Waiting for next command...\n", flush=True)
+
+                prev_score = score
+
     
     except KeyboardInterrupt:
         print("\n[SYSTEM] Shutting down...", flush=True)
