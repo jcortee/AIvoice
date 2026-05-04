@@ -8,6 +8,7 @@ import json
 import subprocess
 import threading
 import traceback
+import re
 from openwakeword.model import Model
 from collections import deque
 
@@ -35,13 +36,14 @@ CAMPUS_JSON = "/home/jcorte/aivoice/campus.json"
 # LLM Settings (like Be More Agent)
 OLLAMA_OPTIONS = {
     'temperature': 0.2,
-    'num_predict': 60,
+    'num_predict': 200,
+    'max_tokens': 200,
     'num_thread': 4,
     'top_k': 40,
     'top_p': 0.9
 }
 
-# System prompt for campus assistant (like BASE_SYSTEM_PROMPT)
+# System prompt for campus assistant
 SYSTEM_PROMPT = """You are a helpful NJIT campus assistant.
 
 INSTRUCTIONS:
@@ -53,7 +55,7 @@ INSTRUCTIONS:
 """
 
 # =========================================================================
-# STATE MANAGEMENT (like BotStates)
+# STATE MANAGEMENT
 # =========================================================================
 
 class AssistantState:
@@ -62,7 +64,6 @@ class AssistantState:
     THINKING = "thinking"
     SPEAKING = "speaking"
     ERROR = "error"
-
 current_state = AssistantState.IDLE
 
 # =========================================================================
@@ -105,7 +106,7 @@ score_window = deque(maxlen=WINDOW_SIZE)
 exiting = False
 
 # =========================================================================
-# HELPER: Load Campus Data (like load_config)
+# HELPER: Load Campus Data
 # =========================================================================
 
 def load_campus_data():
@@ -260,8 +261,49 @@ def speak(text):
     """
     if not text or not text.strip():
         return
+    # -----------------------------
+    # PHONE NUMBER NORMALIZATION
+    # ----------------------------
+    def normalize_phone_numbers(t):
+        def expand(match):
+            number = match.group()
+            # Remove hyphens/spaces
+            digits = number.replace("-", "").replace(" ", "")
+            
+            # Digit-to-word map (0 becomes "oh")
+            speak = {
+                "0": "oh",
+                "1": "one",
+                "2": "two",
+                "3": "three",
+                "4": "four",
+                "5": "five",
+                "6": "six",
+                "7": "seven",
+                "8": "eight",
+                "9": "nine"
+            }
+            
+            # Split into groups: 3-3-4
+            if len(digits) == 10:
+                g1 = " ... ".join(speak[d] for d in digits[0:3])
+                g2 = " ... ".join(speak[d] for d in digits[3:6])
+                g3 = " ... ".join(speak[d] for d in digits[6:10])
+                return f"{g1}, {g2}, {g3}"
+
+            # Fallback: speak all digits spaced
+            return " ... ".join(speak[d] for d in digits)
+
+        return re.sub(r"\b(?:\d[\s\-]?){10}\b", expand, t)
+
+    cleaned = normalize_phone_numbers(text)
     
-    # Acronym expansion (like in original)
+    # Remove Markdown asterisks so Piper doesn't say "asterisk"
+    cleaned = cleaned.replace("*", "")
+
+    # -----------------------------
+    # ACRONYM EXPANSION
+    # -----------------------------
     acronyms = {
         "NJIT": "N.J.I.T",
         "ECEC": "E.C.E.C",
@@ -281,11 +323,10 @@ def speak(text):
         "CAB": "C.A.B",
     }
     
-    cleaned = text
     for abbr, expanded in acronyms.items():
-        cleaned = cleaned.replace(abbr, expanded)
-        cleaned = cleaned.replace(abbr.lower(), expanded.lower())
-    
+        cleaned = re.sub(rf"\b{abbr}\b", expanded, cleaned)
+        cleaned = re.sub(rf"\b{abbr.lower()}\b", expanded.lower(), cleaned)
+
     print(f"[PIPER] Speaking: {cleaned}", flush=True)
     
     current_process = None
