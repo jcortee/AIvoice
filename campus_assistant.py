@@ -108,9 +108,8 @@ exiting = False
 # =========================================================================
 # HELPER: Load Campus Data
 # =========================================================================
-
 def load_campus_data():
-    """Load and flatten campus building data with rich fields for the LLM."""
+    """Load campus.json and return a flat list of building objects for retrieval."""
     try:
         with open(CAMPUS_JSON, "r") as f:
             data = json.load(f)
@@ -119,24 +118,31 @@ def load_campus_data():
         print(f"[ERROR] Failed to load campus data: {e}", flush=True)
         return []
 
-    flat_buildings = []
+    buildings = []
+
+    def normalize_list(value):
+        if not value:
+            return []
+        if isinstance(value, list):
+            return value
+        return [value]
 
     def make_building_obj(item, fallback_key):
         name = item.get("name", fallback_key)
         info = item.get("info", "")
         location = item.get("location", "")
 
-        aliases = item.get("aliases", []) or []
-        amenities = item.get("amenities", []) or []
-        keywords = item.get("keywords", []) or []
+        aliases = normalize_list(item.get("aliases"))
+        amenities = normalize_list(item.get("amenities"))
+        keywords = normalize_list(item.get("keywords"))
         contact = item.get("contact", {}) or {}
         hours = item.get("hours", {}) or {}
 
-        # Build a rich text blob the LLM can reason over
+        # Build the LLM-friendly text blob
         parts = [
             f"Name: {name}",
-            f"Info: {info}",
             f"Location: {location}",
+            f"Info: {info}",
         ]
 
         if aliases:
@@ -146,19 +152,17 @@ def load_campus_data():
         if keywords:
             parts.append("Keywords: " + ", ".join(keywords))
         if contact:
-            contact_lines = [f"{k}: {v}" for k, v in contact.items()]
-            parts.append("Contact: " + " | ".join(contact_lines))
+            parts.append("Contact: " + " | ".join(f"{k}: {v}" for k, v in contact.items()))
         if hours:
-            hours_lines = [f"{day}: {hrs}" for day, hrs in hours.items()]
-            parts.append("Hours: " + " | ".join(hours_lines))
+            parts.append("Hours: " + " | ".join(f"{day}: {hrs}" for day, hrs in hours.items()))
 
         full_text = "\n".join(parts)
 
         return {
             "name": name,
+            "aliases": aliases,
             "info": info,
             "location": location,
-            "aliases": aliases,
             "amenities": amenities,
             "keywords": keywords,
             "contact": contact,
@@ -166,14 +170,16 @@ def load_campus_data():
             "full_text": full_text,
         }
 
+    # Flatten categories
     for key, entry in data.items():
         if isinstance(entry, list):
             for item in entry:
-                flat_buildings.append(make_building_obj(item, key))
+                buildings.append(make_building_obj(item, key))
         else:
-            flat_buildings.append(make_building_obj(entry, key))
+            buildings.append(make_building_obj(entry, key))
 
-    return flat_buildings
+    return buildings
+
 
 
 # =========================================================================
@@ -188,67 +194,130 @@ def set_state(state, msg=""):
     if msg:
         print(f"[STATE] {state.upper()}: {msg}", flush=True)
 
+
+
 # =========================================================================
 # THE BRAIN: LLM-powered Campus Answer (upgraded from get_kiosk_answer)
 # =========================================================================
-
 def get_campus_answer(user_text):
+    # ------------------------------------------------------------
+    # GREETING HANDLER (respond naturally to greetings)
+    # ------------------------------------------------------------
+    greetings = ["hi", "hello", "hey", "what's up", "whats up", 
+                 "good morning", "good afternoon", "good evening",
+                 "greetings", "hola"]
+
+    if user_text.lower().strip() in greetings:
+        return "Hi there! Welcome to NJIT! How can I help you today?"
+        
     """
-    Generate campus answer using Ollama with campus context.
-    Like chat_and_respond but text-only.
+    3‑step retrieval pipeline for small models like gemma3:1b.
+    1. LLM extracts the building name / target location.
+    2. Python matches that to campus.json.
+    3. LLM answers using ONLY that building's info.
     """
+
     set_state(AssistantState.THINKING, "Processing...")
-    
+
     campus_data = load_campus_data()
-    
     if not campus_data:
         return "Sorry, I couldn't load campus information."
-    
-    # Build building list text
-    buildings_text = "\n".join(
-        f"• {b['name']}: {b['info']} " 
-        f"(Location: {b['location']}) "
-        f"(Contact: {', '.join(f'{k}: {v}' for k, v in b['contact'].items()) if b['contact'] else 'None'})"
-        f"(Hours: {', '.join(f'{day}: {hrs}' for day, hrs in b['hours'].items()) if b['hours'] else 'None'})"
+
+    # ------------------------------------------------------------
+    # STEP 1 — Ask LLM: “Which building is the user referring to?”
+    # ------------------------------------------------------------
+    building_list_text = "\n".join(
+        f"- {b['name']} (aliases: {', '.join(b['aliases'])})"
         for b in campus_data
     )
-    
 
-    # Construct prompt (like SYSTEM_PROMPT + context)
-    prompt = f"""{SYSTEM_PROMPT}
+    identify_prompt = f"""
+You are an NJIT campus assistant.
 
-CAMPUS BUILDINGS:
-{buildings_text}
+Below is a list of all buildings and their aliases:
 
-User: {user_text}
+{building_list_text}
 
-Answer:"""
-    
+User question: "{user_text}"
+
+TASK:
+Return ONLY the name of the building the user is referring to.
+If the user is asking about parking, return the correct parking lot or deck name.
+If unsure, return "UNKNOWN".
+"""
+
     try:
-        print("[LLM] Sending to Ollama...", flush=True)
-        response = ollama.generate(
-            model='llama3.2',
-            prompt=prompt,
+        identify_resp = ollama.generate(
+            model="gemma3:1b",
+            prompt=identify_prompt,
             options=OLLAMA_OPTIONS,
             stream=False
         )
-        
-        raw = response.get("response", "").strip()
-        
-        # Clean up common prefixes (like _stream_to_text cleanup)
-        for prefix in ["user:", "assistant:", "answer:", "q:", "a:"]:
-            if raw.lower().startswith(prefix):
-                raw = raw[len(prefix):].strip()
-        
-        print(f"[LLM] Answer: {raw}", flush=True)
-        set_state(AssistantState.SPEAKING, "Speaking...")
-        return raw
-        
+        building_guess = identify_resp.get("response", "").strip()
+        building_guess = building_guess.replace("Name:", "").strip()
+    except:
+        building_guess = "UNKNOWN"
+
+    # ------------------------------------------------------------
+    # STEP 2 — Python: match the building
+    # ------------------------------------------------------------
+    def match_building(name_guess):
+        guess = name_guess.lower()
+
+        # Exact match
+        for b in campus_data:
+            if b["name"].lower() == guess:
+                return b
+
+        # Alias match
+        for b in campus_data:
+            if any(guess == alias.lower() for alias in b["aliases"]):
+                return b
+
+        # Partial match
+        for b in campus_data:
+            if guess in b["name"].lower():
+                return b
+            if any(guess in alias.lower() for alias in b["aliases"]):
+                return b
+
+        return None
+
+    matched = match_building(building_guess)
+
+    if not matched:
+        return "Sorry, I couldn't figure out what you meant. Please check our map for details."
+
+    # ------------------------------------------------------------
+    # STEP 3 — Ask LLM to answer using ONLY the matched building
+    # ------------------------------------------------------------
+    building_context = matched["full_text"]
+
+    answer_prompt = f"""
+You are a helpful NJIT campus assistant.
+
+Use ONLY the information below to answer the user's question.
+Do NOT add anything else.
+
+BUILDING INFO:
+{building_context}
+
+User: {user_text}
+Answer:
+"""
+
+    try:
+        final_resp = ollama.generate(
+            model="gemma3:1b",
+            prompt=answer_prompt,
+            options=OLLAMA_OPTIONS,
+            stream=False
+        )
+        answer = final_resp.get("response", "").strip()
+        return answer
     except Exception as e:
-        print(f"[LLM ERROR] {e}")
-        traceback.print_exc()
-        set_state(AssistantState.ERROR, f"Brain Error: {str(e)[:40]}")
         return "Sorry, I'm having trouble thinking right now."
+
 
 # =========================================================================
 # THE MOUTH: TTS with Piper (upgraded from speak function)
